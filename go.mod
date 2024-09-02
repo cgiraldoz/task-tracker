@@ -1,1 +1,1 @@
-module task-tracker
+module github.com/cgiraldoz/task-tracker

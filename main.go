@@ -10,7 +10,7 @@ import (
 func main() {
 	//TIP Press <shortcut actionId="ShowIntentionActions"/> when your caret is at the underlined or highlighted text
 	// to see how GoLand suggests fixing it.
-	s := "gopher"
+	s := "Cristian 2"
 	fmt.Println("Hello and welcome, %s!", s)
 
 	for i := 1; i <= 5; i++ {
