@@ -1,0 +1,7 @@
+# ignore IDEA files
+.idea/
+# ignore go build files
+*.exe
+*.test
+*.prof
+*.out
