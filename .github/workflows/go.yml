@@ -33,14 +33,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        run: |
-          docker build \
-            -t ghcr.io/${{ github.repository_owner }}/task-tracker:latest \
-            -t ghcr.io/${{ github.repository_owner }}/task-tracker:${{ github.sha[0:7] }} \
-            .
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/task-tracker:latest .
 
-      - name: Push Docker image (latest tag)
+      - name: Push Docker image
         run: docker push ghcr.io/${{ github.repository_owner }}/task-tracker:latest
-
-      - name: Push Docker image (commit SHA tag)
-        run: docker push ghcr.io/${{ github.repository_owner }}/task-tracker:${{ github.sha[0:7] }}
