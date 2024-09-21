@@ -1,4 +1,5 @@
 FROM golang:alpine AS builder
+LABEL org.opencontainers.image.description="Task Tracke: A simple task tracker application"
 WORKDIR /build
 ADD go.mod .
 COPY . .
