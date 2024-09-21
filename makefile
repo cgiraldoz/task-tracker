@@ -21,7 +21,7 @@ endif
 build: clean
 	go build -o $(EXECUTABLE) $(MAIN_GO)
 
-## run: Run the application
+## run: Run the application main.go
 run:
 	go run $(MAIN_GO)
 
