@@ -1,5 +1,9 @@
 FROM golang:alpine AS builder
+
 LABEL org.opencontainers.image.description="Task Tracke: A simple task tracker application"
+LABEL org.opencontainers.image.source=https://github.com/cgiraldoz/task-tracker
+LABEL org.opencontainers.image.licenses=MIT
+
 WORKDIR /build
 ADD go.mod .
 COPY . .
