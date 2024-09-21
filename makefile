@@ -4,6 +4,7 @@ MAIN_GO=main.go
 TAG=latest
 USER=cgiraldoz
 
+# Detect the operating system in use and set the executable file extension
 ifeq ($(OS), Windows_NT)
     EXECUTABLE=$(APP).exe
     COMMIT_SHA := $(shell powershell -Command "git rev-parse --short HEAD")
@@ -14,7 +15,7 @@ else
     DOCKER_LOGIN := echo $(GH_REGISTRY_TOKEN) | docker login $(REGISTRY) -u $(USER) --password-stdin
 endif
 
-.PHONY: build run clean help
+.PHONY: build run clean docker-login docker-build docker-push docker-run
 
 ## build: Build the application
 build: clean
@@ -28,6 +29,7 @@ run:
 clean:
 	go clean
 
+## docker-login: Login to the Docker registry
 docker-login:
 	@$(DOCKER_LOGIN)
 
