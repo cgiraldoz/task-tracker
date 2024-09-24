@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"time"
 )
 
 const filePermission = 0644
@@ -74,16 +75,40 @@ func createEmptyTaskFile(filepath string) ([]Task, error) {
 	return []Task{}, nil
 }
 
-func AddNewTask(task Task) error {
+func AddNewTask(description Description) error {
 	tasks, err := GetTasks()
+
+	newTask := Task{
+		ID:          getLatestTaskID(tasks) + 1,
+		Description: string(description),
+		Status:      "incomplete",
+		CreatedAt:   getCurrentTime(),
+		UpdateAt:    getCurrentTime(),
+	}
 
 	if err != nil {
 		return fmt.Errorf("error getting tasks: %w", err)
 	}
 
-	tasks = append(tasks, task)
+	tasks = append(tasks, newTask)
+
+	newTaskStyle := NewTaskStyle(WarningColor).Render(fmt.Sprintf("ID: %d - Description: %s", newTask.ID, newTask.Description))
+
+	fmt.Printf("Adding new task: %s\n", newTaskStyle)
 
 	return writeTasksToFile(getTaskFilePath(), tasks)
+}
+
+func getCurrentTime() string {
+	return time.Now().Format(time.RFC3339)
+}
+
+func getLatestTaskID(tasks []Task) int64 {
+	if len(tasks) == 0 {
+		return 0
+	}
+
+	return tasks[len(tasks)-1].ID
 }
 
 func writeTasksToFile(filepath string, tasks []Task) error {
@@ -106,6 +131,9 @@ func writeTasksToFile(filepath string, tasks []Task) error {
 		return fmt.Errorf("error encoding tasks to file: %w", encodingError)
 	}
 
-	return nil
+	newTaskStyle := NewTaskStyle(SuccessColor).Render("Task added successfully")
 
+	fmt.Printf("Process status: %s\n", newTaskStyle)
+
+	return nil
 }
