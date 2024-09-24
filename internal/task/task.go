@@ -16,17 +16,10 @@ func AddTask(args []string) {
 		return
 	}
 
-	task := Task{
-		ID:          2,
-		Description: args[0],
-		Status:      "incomplete",
-		CreatedAt:   "2021-07-01T00:00:00Z",
-		UpdateAt:    "2021-07-01T00:00:00Z",
-	}
+	description := Description(args[0])
 
-	fmt.Printf("Added \"%s\" to your task list.\n", task.Description)
+	err := AddNewTask(description)
 
-	err := AddNewTask(task)
 	if err != nil {
 		fmt.Println(err)
 		return
