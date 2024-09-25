@@ -131,9 +131,5 @@ func writeTasksToFile(filepath string, tasks []Task) error {
 		return fmt.Errorf("error encoding tasks to file: %w", encodingError)
 	}
 
-	newTaskStyle := NewTaskStyle(SuccessColor).Render("Task added successfully")
-
-	fmt.Printf("Process status: %s\n", newTaskStyle)
-
 	return nil
 }
