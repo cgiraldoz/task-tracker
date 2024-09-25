@@ -42,6 +42,7 @@ func GetTasks() ([]Task, error) {
 	}
 
 	return tasks, nil
+
 }
 
 func readFromFile(filepath string, tasks *[]Task) error {
