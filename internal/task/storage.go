@@ -40,7 +40,7 @@ func GetTasks() ([]Task, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error reading from task file: %w", err)
 	}
-
+	fmt.Println("camilo:")
 	return tasks, nil
 }
 
@@ -130,10 +130,6 @@ func writeTasksToFile(filepath string, tasks []Task) error {
 	if encodingError := encoder.Encode(tasks); encodingError != nil {
 		return fmt.Errorf("error encoding tasks to file: %w", encodingError)
 	}
-
-	newTaskStyle := NewTaskStyle(SuccessColor).Render("Task added successfully")
-
-	fmt.Printf("Process status: %s\n", newTaskStyle)
 
 	return nil
 }
