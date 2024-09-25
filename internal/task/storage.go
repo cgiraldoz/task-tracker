@@ -40,7 +40,7 @@ func GetTasks() ([]Task, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error reading from task file: %w", err)
 	}
-
+	fmt.Println("Tasks:")
 	return tasks, nil
 }
 
